@@ -1,0 +1,148 @@
+/* === 背景全体（星空と流星） === */
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  font-family: "Segoe UI", sans-serif;
+  color: #fff;
+  background:
+    linear-gradient(rgba(0, 0, 50, 0.6), rgba(0, 0, 80, 0.6)),
+    url("../images/background.png");
+  background-size: cover;
+  background-position: center;
+
+  position: relative;
+}
+
+/* 星層 */
+.stars, .shooting-stars {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.stars::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 200%;
+  height: 200%;
+  background-image: radial-gradient(white, rgba(255,255,255,0) 70%);
+  background-size: 2px 2px;
+  animation: moveStars 200s linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes moveStars {
+  from { transform: translateY(0); }
+  to { transform: translateY(-1000px); }
+}
+
+/* 流星 */
+.shooting-stars::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 80px;
+  background: linear-gradient(45deg, white, transparent);
+  animation: shooting 5s linear infinite;
+  opacity: 0.8;
+}
+@keyframes shooting {
+  0% { transform: translateX(0) translateY(0); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translateX(-500px) translateY(500px); opacity: 0; }
+}
+
+/* === メインエリア === */
+.calculator {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding-top: 10vh;
+}
+
+.input-area {
+  margin-top: 20px;
+}
+
+input {
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  width: 160px;
+  text-align: right;
+}
+
+button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: #5a4bff;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+button:hover {
+  background-color: #756aff;
+}
+
+#result-area {
+  margin-top: 30px;
+  font-size: 18px;
+  line-height: 1.6em;
+}
+
+.ticket-converter {
+  background: transparent; /* 背景透明 */
+  padding: 10px 0;
+  text-align: center;
+}
+
+.ticket-converter input {
+  width: 80px;
+  text-align: center;
+  margin: 0 10px;
+}
+
+.sub-result {
+  color: #ffd700; /* 少し目立つ金色文字（例） */
+  font-size: 0.9em;
+  margin-top: 4px;
+}
+
+
+
+/* === フッター === */
+footer {
+  position: fixed;
+  bottom: 8px;
+  right: 12px;
+  font-size: 10px;
+  color: rgba(255,255,255,0.6);
+  text-align: right;
+}
+
+/* === 光の粒（クリック演出） === */
+.sparkle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(white, transparent);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: sparkle 0.8s ease-out forwards;
+  z-index: 5;
+}
+
+@keyframes sparkle {
+  0% { transform: scale(0.5); opacity: 1; }
+  80% { transform: scale(1.5); opacity: 0.6; }
+  100% { transform: scale(2); opacity: 0; }
+}
